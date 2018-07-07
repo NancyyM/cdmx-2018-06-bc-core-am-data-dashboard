@@ -2,8 +2,8 @@
 
 ----
 ## ¿Qué es?
-Un data dashboard te permite visualizar de manera sencilla y rápida, la información procesada de una data. Esto con el fin, de que los usuarios puedan manejar la data más fácilmente, por ejemplo; cuando vemos el tablero de un carro te dice los índices de gasolina, aceite, temperatura.
-Un data dashboard te puede ofrecer información procesada para que pueda ser usada posteriormente eficazmente.
+Un data dashboard permite visualizar de manera sencilla y rapida, la información procesada de una data, con el fin de que los usuarios puedan manejarla mas facilmente
+Un data dashboard te puede ofrecer información procesada para que puedas trabajarla eficazmente.
 
 ----
 ## ¿Para quién va dirigido?
