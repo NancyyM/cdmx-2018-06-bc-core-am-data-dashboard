@@ -81,7 +81,9 @@ Lo siguiente es diseñar tu Interfaz de Usuario (UI por sus siglas en inglés). 
 
 El diseño debe representar tu ideal de solución. Digamos que es lo que desearías implementar si tuvieras tiempo ilimitado para hackear. 
 
-Tu diseño debe seguir los fundamentos de visual design, como: contraste, alineación, jerarquía, entre otros. Tip: revisa el contenido de UX de la unidad de visual design.
+Tu diseño debe seguir los fundamentos de visual design, como: contraste, alineación, jerarquía, entre otros.Tip: revisa el contenido de UX de la unidad de visual designed.
+
+
 
 ![imagen1](/imagenes/home1.1.png);
 ![imagen2](/imagenes/home1.2.png);

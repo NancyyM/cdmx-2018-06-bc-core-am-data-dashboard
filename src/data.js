@@ -2,116 +2,134 @@ let url = ('https://raw.githubusercontent.com/Laboratoria/cdmx-2018-06-bc-core-a
 
 window.onload = () => {
   fetch(url)
-  .then(response => response.json())
-  .then(laboratoria => {
-    //console.log(laboratoria);
-    //getData(laboratoria);
-
-    computeStudentsStats(laboratoria);
-
-  })
-  .catch(error => {
-    console.log('error');
-  })
+    .then(response => response.json())
+    .then(laboratoria => {
+      computeStudentsStats(laboratoria);
+    })
+    .catch(error => {
+      console.log('error');
+    });
 };
 
 window.computeStudentsStats = (laboratoria) => {
   const students = [];
   const student = {
-      name: '',
-      campus: '',
-      generation: '',
-      stats: {
-        status: '',
-        completedPercentage: 0,
-        topics: {
-          topic: '',
+    name: '',
+    email: '',
+    campus: '',
+    generation: '',
+    stats: {
+      status: '',
+      completedPercentage: 0,
+      topics: {
+        topicName: {
           completedPercentage: 0,
           percentageDuration: 0,
           subtopics: {
-            subtopic: '',
-            completedPercentage: 0,
-            type: '',
-            duration: 0,
+            subtopicName: {
+              completedPercentage: 0,
+              type: '',
+              duration: 0,
+            },
           },
         },
       },
+    }
   };
 
+  let sede = '';
+  let generacion = '';
+  let nombre = '';
+  let correo = '';
+  let porcentajeCompletitudEstudiante = 0;
+  let estatus = '';
+  let tema = '';
+  let porcentajeCompletitudTema = 0;
+  let porcentajeDuracionTema = 0;
+  let subtema = '';
+  let porcentajeCompletitudSubtema = 0;
+  let tipoSubtema = '';
+  let duracionSubtema = '';
+
   for (let key in laboratoria) {
-    if (laboratoria.hasOwnProperty(key)) {
-      student.campus = key;
-      //console.log(key); //Sede
-      let generationKey = Object.keys(laboratoria[key].generacion);
-      student.generation = generationKey;
-      //console.log(generationKey); //Generación
-      let generationValue = Object.values(laboratoria[key].generacion);
-      //console.log(generationValue);
-      for (let i = 0; i < generationValue.length; i++) {
-        console.log(generationValue[i]);
-        let estudiantes = generationValue[i].estudiantes;
-        //console.log(estudiantes);
-        for (let j = 0; j < estudiantes.length; j++) {
-          //console.log( estudiantes[j]);
-          let name = estudiantes[j].nombre;
-          // student.name = name;
-          //student.name = estudiantes[j].nombre;
-          console.log(name); //Nombre de cada estudiante
-          // let email = estudiantes[j].correo;
-          student.email = estudiantes[j].correo;
-          let progressValues = Object.values(estudiantes[j].progreso);
-          //console.log(progressValues);
-          let completedPercentage = progressValues[1];
-          //console.log(completedPercentage);
-          let status ='';
-          if (completedPercentage<=60) {
-            status = 'Bajo nivel de completitud';
-          }
-          else if(completedPercentage>=90){
-            status = 'Nivel alto de completitud';
-          }
-          else {
-            status= 'Completitud normal';
-          }
-          //console.log(status);
-          let topicsKeys = Object.keys(estudiantes[j].progreso.temas);
-          //console.log(topicsKeys);
-          let topicsValues = Object.values(estudiantes[j].progreso.temas);
-          //console.log(topicsValues);
+    sede = key; // Aquí se guarda la sede
+    student.campus = sede;
+    let generationKey = Object.keys(laboratoria[key].generacion);
+    generationKey.forEach((generation) => {
+      generacion = generation; // Aquí se guarda la generación
+      student.generation = generacion;
+      let estudiantes = Object.keys(laboratoria[key].generacion[generation].estudiantes);
+      for (let i = 0; i < estudiantes.length; i++) { // Aquí hacer el push
+        let estudiantes = laboratoria[key].generacion[generation].estudiantes[i];
+        nombre = estudiantes.nombre; // Aquí se guarda el nombre de la estudiante
+        student.name = estudiantes; // console.log(nombre);
+        correo = estudiantes.correo; // Aquí se guarda el correo de la estudiante
+        student.email = correo;
 
-          for (let k = 0; k < topicsValues.length; k++) {
-            //console.log(topicsKeys[k]);
-            //console.log(topicsValues[k]);
-            let completedPercentageTopics = topicsValues[k].porcentajeCompletado;
-            //console.log(completedPercentageTopics);
-            let percentageDurationTopics = topicsValues[k].duracionTemaCompletado;
-            //console.log(percentageDurationTopics);
-            let subtopicsKeys = Object.keys(topicsValues[k].subtemas);
-            //console.log(subtopicsKeys);
-            let subtopic = Object.values(topicsValues[k].subtemas);
-            //console.log(subtopic);
-            for (let x = 0; x < subtopicsKeys.length; x++) {
-              //console.log(subtopicsKeys[x]);
-              let completedPercentageSubtopic = subtopic[x].completado;
-              //console.log(completedPercentageSubtopic);
-              let typeSubtopic = subtopic[x].tipo;
-              //console.log(typeSubtopic);
-              let durationSubtopic = subtopic[x].duracionSubtema;
-              //console.log(durationSubtopic);
+        let progress = estudiantes.progreso;
+        porcentajeCompletitudEstudiante = progress.porcentajeCompletado; // Aquí se guarda el porcentaje de completitud
+        // student.stats.completedPercentage = progress.porcentajeCompletado;
+        let status = '';
+        if (porcentajeCompletitudEstudiante <= 60) {
+          status = 'Bajo nivel de completitud';
+        } else if (porcentajeCompletitudEstudiante >= 90) {
+          status = 'Alto nivel de completitud';
+        } else {
+          status = 'Completitud normal';
+        }
+        // estatus = status; // Aquí se guarda el status de cada estudiante
+        // student.stats.status = status;
+        let topics = progress.temas;
 
-              // students.push({
-              //   name,
-              // });
-            }
+        console.log(student);
+
+        stats = {
+          status: status,
+          completedPercentage: porcentajeCompletitudEstudiante,
+          topics: topics,
+        };
+
+        for (topicName in topics) {
+          let topic = topicName; // Se ingresa a cada tema
+          tema = topic; // Aquí se guarda cada tema
+          // student.stats.topics.topic = topic;
+          porcentajeCompletitudTema = topics[topic].porcentajeCompletado; // Aquí se guarda el porcentaje de completitud de cada tema
+          // student.stats.topics.completedPercentage = topics[topic].porcentajeCompletado;
+          porcentajeDuracionTema = topics[topic].duracionTemaCompletado; // Aquí se guarda la duracion del tema completado
+          // student.stats.topics.percentageDuration = topics[topic].duracionTemaCompletado;
+          let subTopics = topics[topic].subtemas;
+
+          topicName = {
+            completedPercentage: porcentajeCompletitudTema,
+            percentageDuration: porcentajeDuracionTema,
+            subtopics: subTopics,
+          };
+
+          for (let subTopicName in subTopics) {
+            let subTopic = subTopicName;
+            subtema = subTopicName; // Aquí se guarda el nombre del subtema
+            // student.stats.topics.subtopics.subtopic = subTopicName;
+            porcentajeCompletitudSubtema = subTopics[subTopic].completado; // Aquí se guarda el porcentaje de completitud del subtema
+            // student.stats.topics.subtopics.completedPercentage = subTopics[subTopic].completado;
+            tipoSubtema = subTopics[subTopic].tipo; // Aquí se guarda el tipo del subtema
+            // student.stats.topics.subtopics.type = subTopics[subTopic].tipo;
+            duracionSubtema = subTopics[subTopic].duracionSubtema; // Aqui se guarda la suracion del subtema
+            // student.stats.topics.subtopics.duration = subTopics[subTopic].duracionSubtema;
+
+            subtopicName = {
+              completedPercentage: porcentajeCompletitudSubtema,
+              type: tipoSubtema,
+              duration: duracionSubtema,
+            };
+            // console.log(subtopicName);
           }
         }
       }
-    }
+    });
+    // console.log(student);
   }
-  //console.log(students);
-  //return students;
-}
+};
 
-window.computeGenerationsStats = (laboratoria) => {}
-window.sortStudents = (laboratoria) => {}
-window.filterStudents = (laboratoria) => {}
+window.computeGenerationsStats = (laboratoria) => {};
+window.sortStudents = (laboratoria) => {};
+window.filterStudents = (laboratoria) => {};
