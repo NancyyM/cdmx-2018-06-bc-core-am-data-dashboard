@@ -13,29 +13,6 @@ window.onload = () => {
 
 window.computeStudentsStats = (laboratoria) => {
   const students = [];
-  const student = {
-    name: '',
-    email: '',
-    campus: '',
-    generation: '',
-    stats: {
-      status: '',
-      completedPercentage: 0,
-      topics: {
-        topicName: {
-          completedPercentage: 0,
-          percentageDuration: 0,
-          subtopics: {
-            subtopicName: {
-              completedPercentage: 0,
-              type: '',
-              duration: 0,
-            },
-          },
-        },
-      },
-    }
-  };
 
   let sede = '';
   let generacion = '';
@@ -53,22 +30,18 @@ window.computeStudentsStats = (laboratoria) => {
 
   for (let key in laboratoria) {
     sede = key; // Aquí se guarda la sede
-    student.campus = sede;
     let generationKey = Object.keys(laboratoria[key].generacion);
     generationKey.forEach((generation) => {
       generacion = generation; // Aquí se guarda la generación
-      student.generation = generacion;
       let estudiantes = Object.keys(laboratoria[key].generacion[generation].estudiantes);
       for (let i = 0; i < estudiantes.length; i++) { // Aquí hacer el push
         let estudiantes = laboratoria[key].generacion[generation].estudiantes[i];
         nombre = estudiantes.nombre; // Aquí se guarda el nombre de la estudiante
-        student.name = estudiantes; // console.log(nombre);
         correo = estudiantes.correo; // Aquí se guarda el correo de la estudiante
-        student.email = correo;
 
         let progress = estudiantes.progreso;
         porcentajeCompletitudEstudiante = progress.porcentajeCompletado; // Aquí se guarda el porcentaje de completitud
-        // student.stats.completedPercentage = progress.porcentajeCompletado;
+
         let status = '';
         if (porcentajeCompletitudEstudiante <= 60) {
           status = 'Bajo nivel de completitud';
@@ -77,26 +50,26 @@ window.computeStudentsStats = (laboratoria) => {
         } else {
           status = 'Completitud normal';
         }
-        // estatus = status; // Aquí se guarda el status de cada estudiante
-        // student.stats.status = status;
         let topics = progress.temas;
 
-        console.log(student);
-
-        stats = {
-          status: status,
-          completedPercentage: porcentajeCompletitudEstudiante,
-          topics: topics,
+        const student = {
+          name: nombre,
+          email: correo,
+          campus: sede,
+          generation: generacion,
+          stats: {
+            status: status,
+            completedPercentage: porcentajeCompletitudEstudiante,
+            topics: topics,
+          },
         };
+        students.push(student);
 
         for (topicName in topics) {
           let topic = topicName; // Se ingresa a cada tema
           tema = topic; // Aquí se guarda cada tema
-          // student.stats.topics.topic = topic;
           porcentajeCompletitudTema = topics[topic].porcentajeCompletado; // Aquí se guarda el porcentaje de completitud de cada tema
-          // student.stats.topics.completedPercentage = topics[topic].porcentajeCompletado;
           porcentajeDuracionTema = topics[topic].duracionTemaCompletado; // Aquí se guarda la duracion del tema completado
-          // student.stats.topics.percentageDuration = topics[topic].duracionTemaCompletado;
           let subTopics = topics[topic].subtemas;
 
           topicName = {
@@ -105,29 +78,25 @@ window.computeStudentsStats = (laboratoria) => {
             subtopics: subTopics,
           };
 
-          for (let subTopicName in subTopics) {
-            let subTopic = subTopicName;
-            subtema = subTopicName; // Aquí se guarda el nombre del subtema
-            // student.stats.topics.subtopics.subtopic = subTopicName;
+          for (let subtopicName in subTopics) {
+            let subTopic = subtopicName;
+            subtema = subtopicName; // Aquí se guarda el nombre del subtema
             porcentajeCompletitudSubtema = subTopics[subTopic].completado; // Aquí se guarda el porcentaje de completitud del subtema
-            // student.stats.topics.subtopics.completedPercentage = subTopics[subTopic].completado;
             tipoSubtema = subTopics[subTopic].tipo; // Aquí se guarda el tipo del subtema
-            // student.stats.topics.subtopics.type = subTopics[subTopic].tipo;
             duracionSubtema = subTopics[subTopic].duracionSubtema; // Aqui se guarda la suracion del subtema
-            // student.stats.topics.subtopics.duration = subTopics[subTopic].duracionSubtema;
 
             subtopicName = {
               completedPercentage: porcentajeCompletitudSubtema,
               type: tipoSubtema,
               duration: duracionSubtema,
             };
-            // console.log(subtopicName);
           }
         }
       }
     });
-    // console.log(student);
   }
+  console.log(students);
+  return students;
 };
 
 window.computeGenerationsStats = (laboratoria) => {};
