@@ -1,16 +1,21 @@
 # Data Dashboard
 
-----
-## ¿Qué es?
-Un data dashboard te permite visualizar de manera sencilla y rápida, la información procesada de una data. Esto con el fin, de que los usuarios puedan manejar la data más fácilmente, por ejemplo; cuando vemos el tablero de un carro te dice los índices de gasolina, aceite, temperatura.
-Un data dashboard te puede ofrecer información procesada para que pueda ser usada posteriormente eficazmente.
+## INTRODUCCIÓN
+### ¿Qué es?
+Un data dashboard (tablero de datos) permite visualizar de manera sencilla y rapida, la información procesada de una data, con el fin de que los usuarios puedan manejarla mas facilmente.
+Un data dashboard te puede ofrecer información procesada para que puedas trabajarla eficazmente.
+
+### ¿Para quién va dirigido?
+Para las Training Managers (TM) de Laboratoria, que analizan una gran cantidad de información sobre el progreso de las alumnas en las distintas sedes y generaciones.
+
+### Objetivos del Producto
+Facilitar el trabajo de las Training Managers de laboratoria al analizar gran cantidad de información de las alumnas, proporcionando un visualizador de datos ágil e intuitivo, que les permita acceder a la data para tener un mejor entendimiento de cómo va cada estudiante en su proceso de aprendizaje.
 
 ----
-## ¿Para quién va dirigido?
-> Para las Training Managers (TM) de Laboratoria que analizan una gran cantidad de datos del progreso del LMS de las alumnas.
 
-----
-## Identificación del problema
+## DEFINICIÓN DEL PRODUCTO
+
+### Identificación del problema
 # Datos de las TM
 
 * ¿Qué herramienta usas normalmente para visualizar esta la data de las alumnas de Laboratoria?
