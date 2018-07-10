@@ -43,7 +43,7 @@ Las tres TM coinciden en que los datos mas relevantes para ellas sería:
 ### ¿Cuándo revisan normalmente estos datos los usuarios?
 Las TM nos comentan que generalmente revisan mucho más veces los datos de las alumnas al finalizar cada proyecto o sprint, a principios de cada bootcamp y al finalizar cada bootcamp.
 
-Lucile nos comentó que ella diariamente utiliza una herramienta llamada Spreadsheets de google, pero que es complicado estar accediendo a la información porque se encuentra un poco dispersa y que esta información difiere mucho entre sedes. Tambien menciona que no existe una manera facil de obtener la información, ya que casi todo lo trabaja a partir de excel y que el proceso es muy tedioso.
+Lucile nos comentó que utiliza Spreadsheets de google, principalmente al finalizar cada proyecto, pero que es complicado estar accediendo a la información porque se encuentra un poco dispersa y que esta información difiere mucho entre sedes. Tambien menciona que no existe una manera fácil de obtener la información, ya que casi todo lo trabaja a partir de excel y que el proceso es muy tedioso.
 
 Karla rejas nos comentó que al igual que Lucile, utiliza la misma herramienta de google drive y que la utilidad de esta no es amigable visualmente. Ella utiliza Spreadsheets a diario para estar al corriente del avance de las estudiantes.
 
@@ -53,7 +53,7 @@ Alejandra Ramirez coincide con las anteriores TM, ya que la información en la h
 Principalmente porque las TM coincidieron en que actualmente, en el proceso de acceder a la información, se encuentran con un problema principal que es que el proceso es tedioso, la información se encuentra un poco dispersa y no es amigable a la vista.
 Comentan que para ingresar a la información, tienen que acceder a la carpeta de formación, dentro hay otras carpetas de sedes, luego seleccionan la carpeta de la generación que necesitan, y dentro hay mas carpetas con la información de las alumnas, y para saber cuantas estudiantes se encuentran activas tienen que contabilizar cuantas se han dado de baja y restar ese numero al total de las que iniciaron el bootcamp. 
 Todo este proceso les absorbe mucho tiempo y en ocasiones tienen que realizar algunos calculos manuales. Aparte de que la herramienta Spreadsheets tarda mucho en cargar debido a toda la información que contiene. 
-Utilizan la herramienta Spreadsheets y hojas de excel porque es la unica herramienta que tienen para trabajar y aunque no es muy funcional, no hay otra forma de procesar la data.
+Utilizan estas herramientas porque son las únicas que tienen para trabajar y aunque no es muy funcional, no hay otra forma de procesar la data.
 
 Así que basandonos en los problemas que tienen con las herramientas que utilizan, vamos a tratar de abordarlos e intentar implementar la solución a sus actuales problemas. Les resuelve sus problemas porque lo que ellas han mencionado que les causa confusión o les quita mucho tiempo, es precisamente lo que se busca evitar en el proyecto, gracias a las referencias que nos dieron de lo que no les gusta de la herramienta que utilizan y lo que les interesaría poder ver.
 
