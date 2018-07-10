@@ -83,9 +83,9 @@ El diseño debe representar tu ideal de solución. Digamos que es lo que desear�
 
 Tu diseño debe seguir los fundamentos de visual design, como: contraste, alineación, jerarquía, entre otros. Tip: revisa el contenido de UX de la unidad de visual design.
 
-![imagen](/imagenes/home1.1.png);
-![imagen2](/imagenes/home1.2.jpg)
-
+![imagen1](/imagenes/home1.1.png);
+![imagen2](/imagenes/home1.2.png);
+![imagen3](/imagenes/home1.3.png);
 
 
 ### Identificación del problema
