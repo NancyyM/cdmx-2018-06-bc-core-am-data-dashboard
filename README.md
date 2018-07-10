@@ -57,7 +57,7 @@ Utilizan estas herramientas porque son las únicas que tienen para trabajar y au
 
 Así que basandonos en los problemas que tienen con las herramientas que utilizan, vamos a tratar de abordarlos e intentar implementar la solución a sus actuales problemas. Les resuelve sus problemas porque lo que ellas han mencionado que les causa confusión o les quita mucho tiempo, es precisamente lo que se busca evitar en el proyecto, gracias a las referencias que nos dieron de lo que no les gusta de la herramienta que utilizan y lo que les interesaría poder ver.
 
-### Cómo fue tu proceso de diseño.
+### ¿Cómo fue tu proceso de diseño?
 En algo que coinciden las TM es que lo que mas les gustaría es que el programa fuera fácil de utilizar, que se pudiera acceder a el rápidamente, y que pudiera verse en distintas plataformas. Aunque casi siempre ingresan a la data desde su laptop, no estaría mal poder acceder a el también desde el movil o tableta.
 
 Asi que el proceso del diseño contempla una interfáz grafica sencilla, con solamente los botones necesarios para no sobrecargar la página y complicar a los usuarios a la hora de utilizarla y/o manipularla.
@@ -82,6 +82,9 @@ Lo siguiente es diseñar tu Interfaz de Usuario (UI por sus siglas en inglés). 
 El diseño debe representar tu ideal de solución. Digamos que es lo que desearías implementar si tuvieras tiempo ilimitado para hackear. 
 
 Tu diseño debe seguir los fundamentos de visual design, como: contraste, alineación, jerarquía, entre otros. Tip: revisa el contenido de UX de la unidad de visual design.
+
+![imagen](/imagenes/home1.1.png);
+![imagen2](/imagenes/home1.2.jpg)
 
 
 
