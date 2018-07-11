@@ -15,36 +15,37 @@ window.sedes = (laboratoria) => {
   const datacomputeStudentsStats = computeStudentsStats(laboratoria);
   menuDashboard(datacomputeStudentsStats);
 }
-
+window.loadStudents = (sede,generation) => {
+  fetch(url)
+  .then(response => response.json())
+  .then(laboratoria => {
+    const getStudentsStats    = computeStudentsStats(laboratoria);
+    //const getGenerationsStats = computeGenerationsStats(dataJSON);
+    //console.log(getStudentsStats);
+    let filterStudents = [];
+     //let GenerationsStats = [];
+     /*console.log(getStudentsStats);*/
+    getStudentsStats.forEach(function(values, index){
+      if(values['campus']===sede && values['generation']===generation){
+        filterStudents.push(values);
+      }
+    });
+    /*getGenerationsStats.forEach(function(values, index){
+      if(values['campus']===sede){
+        GenerationsStats.push(values);
+      }
+    });*/
+    //loadGraphics(GenerationsStats);
+    createTablestudents(filterStudents);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+}
 window.computeStudentsStats = (laboratoria) => {
-  console.log(laboratoria);
+  /*console.log(laboratoria);*/
   const students = [];
-  const student =[]; /*{
-    name: '',
-    email: '',
-    campus: '',
-    generation: '',
-    stats: {
-      status: '',
-      completedPercentage: 0,
-      topics: {
-        topicName: {
-          completedPercentage: 0,
-          percentageDuration: 0,
-          subtopics: {
-            subtopicName: {
-              completedPercentage: 0,
-              type: '',
-              duration: 0,
-            },
-          },
-        },
-      },
-    }
-  };*/
-
-
-
+  const student =[];
   let sede = '';
   let generacion = '';
   let nombre = '';
@@ -145,6 +146,125 @@ window.computeStudentsStats = (laboratoria) => {
   //console.log(student);
 };
 
+
+const StudensOrderBy = (sede,generation,orderBy,orderDirection)=> {
+  fetch(url)
+  .then(response => response.json())
+  .then(laboratoria => {
+    const students = computeStudentsStats(laboratoria);
+    let filterStudents = [];
+    /*/console.log(students);/*/
+    students.forEach(function(values, index){
+      /*/console.log(sede);/*/
+      if(values['campus']===sede && values['generation']===generation){
+        filterStudents.push(values);
+      }
+    });
+    /*/console.log(sede);/*/
+    //createTablestudents(filterStudents);
+    sortStudents(filterStudents, orderBy, orderDirection);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+}
+
 window.computeGenerationsStats = (laboratoria) => {};
-window.sortStudents = (laboratoria) => {};
-window.filterStudents = (laboratoria) => {};
+
+window.sortStudents = (students, orderBy, orderDirection)=> {
+  let studentsOrder;
+  let getStudentsOrder;
+  if(orderBy==='name'){
+    if(orderDirection==='ASC'){
+      getStudentsOrderName = students.sort(orderbyName);
+    }else{
+      getStudentsOrderName = students.sort(orderbyName).reverse();
+    }
+    studentsOrder = getStudentsOrderName;
+  }
+
+ if(orderBy==='completedPercentage'){
+    if(orderDirection==='ASC'){
+      getStudentsOrderPercentage = students.sort(ordercompletedPercentage);
+    }else{
+      getStudentsOrderPercentage = students.sort(ordercompletedPercentage).reverse();
+    }
+    studentsOrder = getStudentsOrderPercentage;
+  }
+  /*/console.log(students);/*/
+  createTablestudents(students);    
+};
+window.orderbyName = (a,b)=> {
+  if (a.name < b.name)
+    return -1;
+  if (a.name > b.name)
+    return 1;
+  return 0;
+}
+window.ordercompletedPercentage = (a,b)=> {
+    if (a.stats.completedPercentage < b.stats.completedPercentage)
+      return -1;
+    if (a.stats.completedPercentage > b.stats.completedPercentage)
+      return 1;
+    return 0;
+  }
+window.searchStudents = (sede,generation,search)=> {
+  fetch(url)
+  .then(response => response.json())
+  .then(laboratoria => {
+    const students = computeStudentsStats(laboratoria);
+    let filterStudentsval = [];
+    students.forEach(function(values, index){
+     /* /console.log(values);/*/
+      if(values['campus']===sede && values['generation']===generation){
+        filterStudentsval.push(values);
+      }
+    });
+    /*/console.log(filterStudents);/*/
+    filterStudents(filterStudentsval, search);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+};
+window.filterStudents = (students, search)=>{
+  let filterStudents = [];
+  console.log(search);
+  students.forEach(function(values, index){
+    /*/console.log(values);/*/
+    if(values['name']===search){
+      filterStudents.push(values);
+    }
+    if(values['email']===search){
+      filterStudents.push(values);
+    }
+    console.log(values['stats']['completedPercentage']);
+    if(parseInt(values['stats']['completedPercentage'])===parseInt(search)){
+      filterStudents.push(values);
+    }
+    if(search===''){
+      filterStudents = students;
+    }
+  });
+  createTablestudents(filterStudents); 
+};
+
+const loadDetails = (sede,generation,alumna)=>{
+  fetch(url)
+  .then(response => response.json())
+  .then(laboratoria => {
+    const students = computeStudentsStats(laboratoria);
+      let filterStudentsval = [];
+      students.forEach(function(values, index){
+        console.log(alumna);
+        if(values['campus']===sede && values['generation']===generation && values['name']===alumna){
+          filterStudentsval.push(values);
+        }
+      });
+      detailsShow(filterStudentsval);
+      /*console.log(filterStudentsval);*/
+  })
+  .catch(error => {
+    console.log(error);
+  });
+}
