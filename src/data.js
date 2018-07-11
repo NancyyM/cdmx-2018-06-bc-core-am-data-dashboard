@@ -4,8 +4,7 @@ window.onload = () => {
   fetch(url)
     .then(response => response.json())
     .then(laboratoria => {
-      computeStudentsStats(laboratoria);
-      //sedes(laboratoria); //al momento de cargar la pagina va a ejecutar la funcion sedes
+        sedes(laboratoria);//al momento de cargar la pagina va a ejecutar la funcion sedes
     })
     .catch(error => {
       console.log(error);
@@ -13,11 +12,8 @@ window.onload = () => {
 };
 
 window.sedes = (laboratoria) => {
-  console.log(laboratoria);
-  let sedesKeys = Object.keys(laboratoria); //obtiene los primeros indices de un arreglo (sedes) y se asigna a sedesKeys
-  console.log(sedesKeys); //me regresa: ["lima", "mexico", "santiago"]
-
-
+  const datacomputeStudentsStats = computeStudentsStats(laboratoria);
+  menuDashboard(datacomputeStudentsStats);
 }
 
 window.computeStudentsStats = (laboratoria) => {
@@ -48,7 +44,7 @@ window.computeStudentsStats = (laboratoria) => {
   };*/
 
 
-  
+
   let sede = '';
   let generacion = '';
   let nombre = '';
@@ -143,10 +139,10 @@ window.computeStudentsStats = (laboratoria) => {
         student.push({'name':nombre,'email':correo,'campus':sede,'generation':generacion,'stats':stats})
       }
     });
-    return student;
      //console.log(student);
   }
-  console.log(student);
+  return student;
+  //console.log(student);
 };
 
 window.computeGenerationsStats = (laboratoria) => {};
