@@ -47,6 +47,8 @@ window.computeStudentsStats = (laboratoria) => {
     }
   };*/
 
+
+  
   let sede = '';
   let generacion = '';
   let nombre = '';
