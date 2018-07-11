@@ -5,15 +5,25 @@ window.onload = () => {
     .then(response => response.json())
     .then(laboratoria => {
       computeStudentsStats(laboratoria);
+      //sedes(laboratoria); //al momento de cargar la pagina va a ejecutar la funcion sedes
     })
     .catch(error => {
-      console.log('error');
+      console.log(error);
     });
 };
 
+window.sedes = (laboratoria) => {
+  console.log(laboratoria);
+  let sedesKeys = Object.keys(laboratoria); //obtiene los primeros indices de un arreglo (sedes) y se asigna a sedesKeys
+  console.log(sedesKeys); //me regresa: ["lima", "mexico", "santiago"]
+
+
+}
+
 window.computeStudentsStats = (laboratoria) => {
+  console.log(laboratoria);
   const students = [];
-  const student = {
+  const student =[]; /*{
     name: '',
     email: '',
     campus: '',
@@ -35,7 +45,7 @@ window.computeStudentsStats = (laboratoria) => {
         },
       },
     }
-  };
+  };*/
 
   let sede = '';
   let generacion = '';
@@ -52,19 +62,25 @@ window.computeStudentsStats = (laboratoria) => {
   let duracionSubtema = '';
 
   for (let key in laboratoria) {
+    //console.log(key);
     sede = key; // Aquí se guarda la sede
-    student.campus = sede;
+    //student.campus.push(sede);
     let generationKey = Object.keys(laboratoria[key].generacion);
+    //console.log(generationKey);
     generationKey.forEach((generation) => {
       generacion = generation; // Aquí se guarda la generación
-      student.generation = generacion;
+      //student.generation = generacion;
+      //console.log(generation);
       let estudiantes = Object.keys(laboratoria[key].generacion[generation].estudiantes);
+      //console.log(estudiantes);
       for (let i = 0; i < estudiantes.length; i++) { // Aquí hacer el push
         let estudiantes = laboratoria[key].generacion[generation].estudiantes[i];
+        //console.log(estudiantes);
+        //console.log(estudiantes.progreso.temas);
         nombre = estudiantes.nombre; // Aquí se guarda el nombre de la estudiante
-        student.name = estudiantes; // console.log(nombre);
+        //student.name = estudiantes; // console.log(nombre);
         correo = estudiantes.correo; // Aquí se guarda el correo de la estudiante
-        student.email = correo;
+        //student.email = correo;
 
         let progress = estudiantes.progreso;
         porcentajeCompletitudEstudiante = progress.porcentajeCompletado; // Aquí se guarda el porcentaje de completitud
@@ -77,17 +93,11 @@ window.computeStudentsStats = (laboratoria) => {
         } else {
           status = 'Completitud normal';
         }
-        // estatus = status; // Aquí se guarda el status de cada estudiante
+         estatus = status; // Aquí se guarda el status de cada estudiante
         // student.stats.status = status;
         let topics = progress.temas;
 
-        console.log(student);
-
-        stats = {
-          status: status,
-          completedPercentage: porcentajeCompletitudEstudiante,
-          topics: topics,
-        };
+        /* console.log(student);*/
 
         for (topicName in topics) {
           let topic = topicName; // Se ingresa a cada tema
@@ -98,12 +108,6 @@ window.computeStudentsStats = (laboratoria) => {
           porcentajeDuracionTema = topics[topic].duracionTemaCompletado; // Aquí se guarda la duracion del tema completado
           // student.stats.topics.percentageDuration = topics[topic].duracionTemaCompletado;
           let subTopics = topics[topic].subtemas;
-
-          topicName = {
-            completedPercentage: porcentajeCompletitudTema,
-            percentageDuration: porcentajeDuracionTema,
-            subtopics: subTopics,
-          };
 
           for (let subTopicName in subTopics) {
             let subTopic = subTopicName;
@@ -121,13 +125,26 @@ window.computeStudentsStats = (laboratoria) => {
               type: tipoSubtema,
               duration: duracionSubtema,
             };
-            // console.log(subtopicName);
+            //console.log(subtopicName);
           }
+          topicName = {
+            completedPercentage: porcentajeCompletitudTema,
+            percentageDuration: porcentajeDuracionTema,
+            subtopics: subtopicName,
+          };
+          stats = {
+            status: status,
+            completedPercentage: porcentajeCompletitudEstudiante,
+            topics: topicName,
+          };
         }
+        student.push({'name':nombre,'email':correo,'campus':sede,'generation':generacion,'stats':stats})
       }
     });
-    // console.log(student);
+    return student;
+     //console.log(student);
   }
+  console.log(student);
 };
 
 window.computeGenerationsStats = (laboratoria) => {};
