@@ -25,3 +25,8 @@
 //     }
 //
 // }
+
+const drawStudents = () => {
+  window.computeStudentsStats;
+  document.innerHTML('Hola');
+};
